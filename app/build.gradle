@@ -1,0 +1,137 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.ar.sceneform.plugin'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.example.armirrors"
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            universalApk true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jniLibs/'] } }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(path: ':sdk')
+    implementation 'org.java-websocket:Java-WebSocket:1.4.0'
+    implementation 'de.greenrobot:eventbus:3.0.0-beta1'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.13.0'
+}
+
+
+sceneform.asset('sampledata/circle_bronze.fbx',
+        'default',
+        'sampledata/circle_bronze.sfa',
+        'src/main/assets/circle_bronze')
+
+
+sceneform.asset('sampledata/circle_copper.fbx',
+        'default',
+        'sampledata/circle_copper.sfa',
+        'src/main/assets/circle_copper')
+
+sceneform.asset('sampledata/circle_oak.fbx',
+        'default',
+        'sampledata/circle_oak.sfa',
+        'src/main/assets/circle_oak')
+
+sceneform.asset('sampledata/circle_walnut.fbx',
+        'default',
+        'sampledata/circle_walnut.sfa',
+        'src/main/assets/circle_walnut')
+
+sceneform.asset('sampledata/half_triangle_bronze.fbx',
+        'default',
+        'sampledata/half_triangle_bronze.sfa',
+        'src/main/assets/half_triangle_bronze')
+
+sceneform.asset('sampledata/half_triangle_copper.fbx',
+        'default',
+        'sampledata/half_triangle_copper.sfa',
+        'src/main/assets/half_triangle_copper')
+
+sceneform.asset('sampledata/half_triangle_oak.fbx',
+        'default',
+        'sampledata/half_triangle_oak.sfa',
+        'src/main/assets/half_triangle_oak')
+
+sceneform.asset('sampledata/half_triangle_walnut.fbx',
+        'default',
+        'sampledata/half_triangle_walnut.sfa',
+        'src/main/assets/half_triangle_walnut')
+
+sceneform.asset('sampledata/MirrorFrame.fbx',
+        'default',
+        'sampledata/MirrorFrame.sfa',
+        'src/main/assets/MirrorFrame')
+
+sceneform.asset('sampledata/square_bronze.fbx',
+        'default',
+        'sampledata/square_bronze.sfa',
+        'src/main/assets/square_bronze')
+
+sceneform.asset('sampledata/square_copper.fbx',
+        'default',
+        'sampledata/square_copper.sfa',
+        'src/main/assets/square_copper')
+
+sceneform.asset('sampledata/square_oak.fbx',
+        'default',
+        'sampledata/square_oak.sfa',
+        'src/main/assets/square_oak')
+
+sceneform.asset('sampledata/square_walnut.fbx',
+        'default',
+        'sampledata/square_walnut.sfa',
+        'src/main/assets/square_walnut')
+
+sceneform.asset('sampledata/triangle_bronze.fbx',
+        'default',
+        'sampledata/triangle_bronze.sfa',
+        'src/main/assets/triangle_bronze')
+
+sceneform.asset('sampledata/triangle_copper.fbx',
+        'default',
+        'sampledata/triangle_copper.sfa',
+        'src/main/assets/triangle_copper')
+
+sceneform.asset('sampledata/triangle_oak.fbx',
+        'default',
+        'sampledata/triangle_oak.sfa',
+        'src/main/assets/triangle_oak')
+
+sceneform.asset('sampledata/triangle_walnut.fbx',
+        'default',
+        'sampledata/triangle_walnut.sfa',
+        'src/main/assets/triangle_walnut')

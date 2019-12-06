@@ -1,0 +1,187 @@
+{
+  animations: [
+    {
+      path: 'sampledata/MirrorFrame.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Carrera_Marble',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'Carrera_Marble',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'BackColor',
+      parameters: [
+        {
+          baseColor: [
+            0.64313699999999996,
+            0.69803899999999997,
+            0.73333300000000001,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Color_M09',
+      parameters: [
+        {
+          baseColor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Stone_Vein_Gray',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'Stone_Vein_Gray',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/MirrorFrame.fbx',
+    name: 'MirrorFrame',
+    recenter: true,
+  },
+  samplers: [
+    {
+      file: 'sampledata/MirrorFrame/Stone_Vein_Gray.jpg',
+      name: 'Stone_Vein_Gray',
+      pipeline_name: '..\\..\\..\\Documents\\MirrorFrame\\Stone_Vein_Gray.jpg',
+    },
+    {
+      file: 'sampledata/MirrorFrame/Carrera_Marble.jpg',
+      name: 'Carrera_Marble',
+      pipeline_name: '..\\..\\..\\Documents\\MirrorFrame\\Carrera_Marble.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

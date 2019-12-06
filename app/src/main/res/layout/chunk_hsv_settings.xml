@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hsvSettingsChunk"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/lh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/lh"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarLh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:max="180"
+                android:min="0"
+                android:progress="20" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/lhText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/ls"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarLs"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:max="255"
+                android:min="0"
+                android:progress="60" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/lsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/lv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/lv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarLv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:max="255"
+                android:min="0"
+                android:progress="50" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap3"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/lvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/uh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/uh"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarUh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:max="180"
+                android:min="0"
+                android:progress="50" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/uhText"
+                android:layout_width="247dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="383dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/us"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarUs"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:max="255"
+                android:min="0"
+                android:progress="200" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/usText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/uv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/uv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarUv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:max="255"
+                android:min="0"
+                android:progress="255" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/uvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="357dp"
+            android:layout_height="match_parent">
+
+            <Switch
+                android:id="@+id/switch4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/dilate_erode"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarMorphKernel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:max="32"
+                android:min="2"
+                android:progress="12"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Switch
+                android:id="@+id/switch5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/inv_mask"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/morphKernelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:visibility="gone" />
+        </TableRow>
+
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

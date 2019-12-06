@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:opencv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/backgroundServerSettings"
+        android:layout_width="780dp"
+        android:layout_height="1082dp"
+        android:contentDescription="TODO"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_splashscreen9"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <org.opencv.android.JavaCamera2View
+        android:id="@+id/javaCam"
+        android:layout_width="0dp"
+        android:layout_height="322dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0"
+        opencv:camera_id="any"
+        opencv:show_fps="true" />
+
+    <TextView
+        android:id="@+id/ServerStatusDisplay"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:fontFamily="@font/consola"
+        android:text="@string/servertextview"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/ClienStatusDisplay"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:fontFamily="@font/consola"
+        android:text="@string/clienttextview"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ServerStatusDisplay" />
+
+    <Spinner
+        android:id="@+id/bgSubtractionSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/bgspinneritems"
+        android:popupBackground="@color/dark_background"
+        android:spinnerMode="dropdown"
+        android:theme="@style/SliderTheme"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/ServerStatusDisplay"
+        app:layout_constraintStart_toStartOf="@+id/ServerStatusDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/javaCam" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/darker_gray"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/bgSubtractionSpinner"
+        tools:layout_editor_absoluteX="-17dp" />
+
+    <LinearLayout
+        android:id="@+id/test"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ServerStatusDisplay"
+        app:layout_constraintStart_toStartOf="@+id/ClienStatusDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/line">
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

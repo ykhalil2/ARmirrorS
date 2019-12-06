@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cannySettingsChunk"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RadioGroup
+        android:id="@+id/radioGroupCanny"
+        android:layout_width="0dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/cannyContours"
+            android:layout_width="183dp"
+            android:layout_height="21dp"
+            android:fontFamily="@font/consolab"
+            android:text="@string/canny_contours"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorTransparentWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/cannyBinary"
+            android:layout_width="180dp"
+            android:layout_height="21dp"
+            android:fontFamily="@font/consolab"
+            android:text="@string/canny_binary"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorTransparentWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/cannyBinaryInv"
+            android:layout_width="181dp"
+            android:layout_height="21dp"
+            android:fontFamily="@font/consolab"
+            android:text="@string/canny_binary_inv"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorTransparentWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/cannyAdaptive"
+            android:layout_width="182dp"
+            android:layout_height="21dp"
+            android:fontFamily="@font/consolab"
+            android:text="@string/canny_adaptive"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorTransparentWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/cannyAdaptiveInv"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:fontFamily="@font/consolab"
+            android:text="@string/canny_adaptive_inv"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorTransparentWhite"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="12dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupCanny" />
+
+    <TableLayout
+        android:id="@+id/tableLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupCanny">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/maxThreshCanny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/maxThreshCanny"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarMaxValCanny"
+                android:layout_width="236dp"
+                android:layout_height="match_parent"
+                android:max="255"
+                android:min="0"
+                android:progress="179" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/bMaxThreshCanny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/thresholdValueCanny"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/thresholdValueCanny"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarThresholdValueCanny"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:max="255"
+                android:min="0"
+                android:progress="127" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/bThreshCanny"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <TextView
+                android:id="@+id/meanHSVText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="mean Threshold HSV = "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/meanThresholdCannyText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="Overwrite mean HSV? "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="Image Enhancments? "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <Switch
+                android:id="@+id/switch3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="" />
+
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

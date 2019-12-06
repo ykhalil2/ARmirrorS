@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/adaptiveSettingsChunk"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RadioGroup
+        android:id="@+id/radioGroupAdaptive"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/adaptiveMean"
+            android:layout_width="143dp"
+            android:layout_height="21dp"
+            android:fontFamily="@font/consolab"
+            android:text="@string/adaptivemean"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorTransparentWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/adaptiveGaussian"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:fontFamily="@font/consolab"
+            android:text="@string/adaptivegaussian"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorTransparentWhite"
+            android:textSize="12sp"  />
+
+    </RadioGroup>
+
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="12dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupAdaptive" />
+
+    <TableLayout
+        android:id="@+id/tableLayout4"
+        android:layout_width="400dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/maxthreshAdaptive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/maxthresh"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarMaxValAdaptive"
+                android:layout_width="216dp"
+                android:layout_height="match_parent"
+                android:max="255"
+                android:min="0"
+                android:progress="255" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/maxVal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/blockSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/blocksize"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarBlockSize"
+                android:layout_width="264dp"
+                android:layout_height="match_parent"
+                android:max="721"
+                android:min="3"
+                android:progress="11" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/bSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/subtractionConstant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/constant"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekSubtractionConstant"
+                android:layout_width="254dp"
+                android:layout_height="match_parent"
+                android:max="20"
+                android:min="2"
+                android:progress="11" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/cConstant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/medianBlur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/medianblur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:visibility="gone" />
+
+            <SeekBar
+                android:id="@+id/seekMedianBlur"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:max="25"
+                android:min="1"
+                android:progress="5"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emptyGap4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/mBlur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:visibility="gone" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Switch
+                android:id="@+id/switch8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/dilate_erode"
+                android:textColor="@color/colorTransparentWhite"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarMorphKernelAdaptive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="32"
+                android:min="2"
+                android:progress="12"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Switch
+                android:id="@+id/switch9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/consola"
+                android:text="@string/inv_mask"
+                android:textSize="12sp"
+                android:textColor="@color/colorTransparentWhite" />
+
+
+            <TextView
+                android:id="@+id/morphKernelAdaptiveText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#566EF7"
+                android:visibility="gone" />
+        </TableRow>
+
+
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,68 @@
+{
+  animations: [
+    {
+      path: 'sampledata/square_bronze.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'bronze',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'bronze',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0.70,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 0.45,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/square_bronze.fbx',
+    name: 'square_bronze',
+    recenter: true,
+  },
+  samplers: [
+    {
+      file: 'sampledata/square_bronze/bronze.jpg',
+      name: 'bronze',
+      pipeline_name: '..\\..\\..\\Documents\\square_bronze\\bronze.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

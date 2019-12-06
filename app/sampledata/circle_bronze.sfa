@@ -1,0 +1,68 @@
+{
+  animations: [
+    {
+      path: 'sampledata/circle_bronze.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'bronze',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'bronze',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/circle_bronze.fbx',
+    name: 'circle_bronze',
+    recenter: true,
+  },
+  samplers: [
+    {
+      file: 'sampledata/circle_bronze/bronze.jpg',
+      name: 'bronze',
+      pipeline_name: '..\\..\\..\\Documents\\circle_bronze\\bronze.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

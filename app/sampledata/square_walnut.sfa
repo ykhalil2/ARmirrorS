@@ -1,0 +1,68 @@
+{
+  animations: [
+    {
+      path: 'sampledata/square_walnut.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'walnut',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'walnut',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/square_walnut.fbx',
+    name: 'square_walnut',
+    recenter: true,
+  },
+  samplers: [
+    {
+      file: 'sampledata/square_walnut/walnut.jpg',
+      name: 'walnut',
+      pipeline_name: '..\\..\\..\\Documents\\square_walnut\\walnut.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

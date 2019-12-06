@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliderLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ARmirrorS.Activities.ServerClientSelection">
+
+    <ImageView
+        android:id="@+id/serverSettingsSliderImageTopChunk"
+        android:layout_width="304dp"
+        android:layout_height="301dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="62dp"
+        android:contentDescription="@string/server"
+        android:src="@drawable/ic_server_settings0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ServerSettingsSliderHeading"
+        android:layout_width="237dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/bauhaus"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="@+id/serverSettingsSliderImageTopChunk"
+        app:layout_constraintStart_toStartOf="@+id/serverSettingsSliderImageTopChunk"
+        app:layout_constraintTop_toBottomOf="@+id/serverSettingsSliderImageTopChunk"
+        app:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/ServerSettingsSliderText"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="136dp"
+        android:fontFamily="@font/consolab"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/ServerSettingsSliderHeading"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/ServerSettingsSliderHeading"
+        app:layout_constraintTop_toBottomOf="@+id/serverSettingsSliderImageTopChunk" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

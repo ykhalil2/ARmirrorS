@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliderClientLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_background"
+    tools:context="com.example.ARmirrorS.Activities.ServerClientSelection">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/merge1Server"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_background_client_settings" />
+
+        <ImageView
+            android:id="@+id/backgroundClientSettings"
+            android:layout_width="780dp"
+            android:layout_height="1082dp"
+            android:background="@color/dark_background"
+            android:contentDescription="TODO"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_splashscreen9"
+            android:visibility="invisible"
+            tools:layout_editor_absoluteX="-234dp"
+            tools:layout_editor_absoluteY="-97dp" />
+
+        <LinearLayout
+            android:id="@+id/dotsLayoutClientSettings"
+            android:layout_width="56dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="25dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.469"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/previousButtonClientSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="BACK"
+            android:textColor="@color/colorTransparentWhite"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/nextButtonClientSettings"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/nextButtonClientSettings"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorTransparentWhite"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/previousButtonClientSettings" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/sliderViewPagerClient"
+        android:layout_width="match_parent"
+        android:layout_height="710dp">
+
+    </androidx.viewpager.widget.ViewPager>
+
+</RelativeLayout>
+

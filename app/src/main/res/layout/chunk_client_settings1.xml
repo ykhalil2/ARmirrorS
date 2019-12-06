@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliderLayoutClient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ARmirrorS.Activities.ServerClientSelection">
+
+    <EditText
+        android:id="@+id/textE1"
+        android:layout_width="73dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:fontFamily="@font/consolab"
+        android:inputType="number"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tryAgain"
+        app:layout_constraintEnd_toEndOf="@+id/clientSettingsSliderText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dot3"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dot1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/consolab"
+        android:text="."
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tryAgain"
+        app:layout_constraintStart_toEndOf="@+id/textE2"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/textE2"
+        android:layout_width="73dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:fontFamily="@font/consolab"
+        android:inputType="number"
+        android:text="168"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/dot1"
+        app:layout_constraintStart_toEndOf="@+id/dot2"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dot2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/consolab"
+        android:text="."
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/dot1"
+        app:layout_constraintStart_toEndOf="@+id/textE3"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/textE3"
+        android:layout_width="73dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:fontFamily="@font/consolab"
+        android:inputType="number"
+        android:text="192"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/dot1"
+        app:layout_constraintStart_toStartOf="@+id/clientSettingsSliderText"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dot3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/consolab"
+        android:text="."
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tryAgain"
+        app:layout_constraintStart_toEndOf="@+id/textE4"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/textE4"
+        android:layout_width="73dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:fontFamily="@font/consolab"
+        android:inputType="number"
+        android:text="43"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/dot1"
+        app:layout_constraintStart_toEndOf="@+id/dot1"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/tryAgain"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="143dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="44dp"
+        android:fontFamily="@font/consolab"
+        android:text="TRY AGAIN"
+        android:textColor="#A59B95"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientSettingsSliderText"
+        app:layout_constraintVertical_bias="0.962"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/clientSettingsSliderImageTopChunk"
+        android:layout_width="304dp"
+        android:layout_height="301dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="62dp"
+        android:contentDescription="@string/client"
+        android:src="@drawable/ic_clients_settings0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/clientSettingsSliderHeading"
+        android:layout_width="237dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/bauhaus"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="@+id/clientSettingsSliderImageTopChunk"
+        app:layout_constraintStart_toStartOf="@+id/clientSettingsSliderImageTopChunk"
+        app:layout_constraintTop_toBottomOf="@+id/clientSettingsSliderImageTopChunk"
+        app:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/clientSettingsSliderText"
+        android:layout_width="341dp"
+        android:layout_height="133dp"
+        android:layout_marginTop="108dp"
+        android:fontFamily="@font/consolab"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/clientSettingsSliderHeading"
+        app:layout_constraintStart_toStartOf="@+id/clientSettingsSliderHeading"
+        app:layout_constraintTop_toBottomOf="@+id/clientSettingsSliderImageTopChunk" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

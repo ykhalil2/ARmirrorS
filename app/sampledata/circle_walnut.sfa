@@ -1,0 +1,68 @@
+{
+  animations: [
+    {
+      path: 'sampledata/circle_walnut.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'walnut',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'walnut',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/circle_walnut.fbx',
+    name: 'circle_walnut',
+    recenter: true,
+  },
+  samplers: [
+    {
+      file: 'sampledata/circle_walnut/walnut.jpg',
+      name: 'walnut',
+      pipeline_name: '..\\..\\..\\Documents\\circle_walnut\\walnut.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

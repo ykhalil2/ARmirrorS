@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliderLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.ARmirrorS.Activities.ServerClientSelection">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/merge1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_server_client_selection" />
+
+        <ImageView
+            android:id="@+id/back1"
+            android:layout_width="780dp"
+            android:layout_height="1082dp"
+            android:contentDescription="TODO"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_splashscreen9"
+            android:visibility="gone"
+            tools:layout_editor_absoluteX="-234dp"
+            tools:layout_editor_absoluteY="-97dp" />
+
+        <LinearLayout
+            android:id="@+id/dotsLayout"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/previousButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="PREVIOUS"
+            android:textColor="@color/colorTransparentWhite"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/nextButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="NEXT"
+            android:textColor="@color/colorTransparentWhite"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/previousButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/sliderViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="710dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="50dp">
+
+    </androidx.viewpager.widget.ViewPager>
+
+</RelativeLayout>
+

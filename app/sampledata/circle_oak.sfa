@@ -1,0 +1,68 @@
+{
+  animations: [
+    {
+      path: 'sampledata/circle_oak.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'oak',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'oak',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/circle_oak.fbx',
+    name: 'circle_oak',
+    recenter: true,
+  },
+  samplers: [
+    {
+      file: 'sampledata/circle_oak/oak.jpg',
+      name: 'oak',
+      pipeline_name: '..\\..\\..\\Documents\\circle_oak\\oak.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

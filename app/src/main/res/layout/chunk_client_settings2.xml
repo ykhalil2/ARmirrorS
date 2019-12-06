@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliderLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ARmirrorS.Activities.ServerClientSelection">
+
+    <ImageView
+        android:id="@+id/clientSettings2SliderImageTopChunk"
+        android:layout_width="304dp"
+        android:layout_height="301dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="62dp"
+        android:contentDescription="@string/server"
+        android:src="@drawable/ic_clients_settings2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/clientSettings2SliderHeading"
+        android:layout_width="237dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/bauhaus"
+        android:text="@string/tilesize"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="@+id/clientSettings2SliderImageTopChunk"
+        app:layout_constraintStart_toStartOf="@+id/clientSettings2SliderImageTopChunk"
+        app:layout_constraintTop_toBottomOf="@+id/clientSettings2SliderImageTopChunk"
+        app:textAllCaps="false" />
+
+
+    <TextView
+        android:id="@+id/clientSettings2SliderText"
+        android:layout_width="347dp"
+        android:layout_height="81dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="@font/consolab"
+        android:text="@string/tilesizedescription"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="@+id/clientSettings2SliderHeading"
+        app:layout_constraintStart_toStartOf="@+id/clientSettings2SliderHeading" />
+
+    <HorizontalScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/clientSettings2SliderText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientSettings2SliderHeading"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <LinearLayout
+            android:id="@+id/gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <ImageView
+                    android:id="@+id/imageBox4"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    app:srcCompat="@drawable/wood32" />
+
+                <ImageView
+                    android:id="@+id/imageOverlayBox4"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood32overlay" />
+
+                <ImageView
+                    android:id="@+id/imageDisabledBox4"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood32disabled" />
+
+                <TextView
+                    android:id="@+id/textBox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="37dp"
+                    android:fontFamily="@font/consolaz"
+                    android:text="32 X 32"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <ImageView
+                    android:id="@+id/imageBox3"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    app:srcCompat="@drawable/wood26" />
+
+                <ImageView
+                    android:id="@+id/imageOverlayBox3"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood26overlay" />
+
+                <ImageView
+                    android:id="@+id/imageDisabledBox3"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood26disabled" />
+
+                <TextView
+                    android:id="@+id/textBox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="37dp"
+                    android:fontFamily="@font/consolaz"
+                    android:text="26 X 26"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <ImageView
+                    android:id="@+id/imageBox2"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    app:srcCompat="@drawable/wood22" />
+
+                <ImageView
+                    android:id="@+id/imageOverlayBox2"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood22overlay" />
+
+                <ImageView
+                    android:id="@+id/imageDisabledBox2"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood22disabled" />
+
+                <TextView
+                    android:id="@+id/textBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="37dp"
+                    android:fontFamily="@font/consolaz"
+                    android:text="22 X 22"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <ImageView
+                    android:id="@+id/imageBox1"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    app:srcCompat="@drawable/wood16" />
+
+                <ImageView
+                    android:id="@+id/imageOverlayBox1"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood16overlay" />
+
+                <ImageView
+                    android:id="@+id/imageDisabledBox1"
+                    android:layout_width="240dp"
+                    android:layout_height="147dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/wood16disabled" />
+
+                <TextView
+                    android:id="@+id/textBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="37dp"
+                    android:fontFamily="@font/consolaz"
+                    android:text="16 X 16"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">Mirrors</string>
+
+    <string name="Server_Hello">Welcome to the OpenCV Wooden Mirror Server [Hello, it is me. Luigi]</string>
+    <string name="client_Hello">Hello, it is me. Mario :)</string>
+    <string name="ServerStatus">Server Status</string>
+    <string name="ClientStatus">Client Status</string>
+    <string name="servertextview">Starting</string>
+    <string name="clienttextview">Checking for connected clients</string>
+    <string name="view_rgba">Preview Color Frames</string>
+    <string name="view_gray">Preview Gray Frames</string>
+    <string name="view_canny">Preview Canny Frames</string>
+    <string name="view_mask">Preview Mask Frames</string>
+    <string name="view_pixelated">Preview Pixelated Frames</string>
+    <string name="serverTextView">Join as a Server. Experiment with different background subtraction algorithms. And send images to clients to view live feed on the magical AR wooden mirror </string>
+    <string name="clientTextView">Join as a client. See yourself on a wooden Mirror. Just look around for our log on one of the walls. </string>
+    <string name="subtractmethod">Subtract Method</string>
+
+    <string-array name="bgspinneritems">
+        <item>Select Method </item>
+        <item>Binary Threshold</item>
+        <item>Adaptive Threshold</item>
+        <item>Otsu’s Binarization</item>
+        <item>Canny Edge Detect</item>
+        <item>HSV Subdivision</item>
+        <item>Frame Difference</item>
+    </string-array>
+
+    <string name="view_camera">Camera Effect</string>
+    <string name="view_camera_res">Camera Resolution</string>
+    <string name="maxthresh">maxVal: when exceed</string>
+
+    <string name="threshval">Threshold: pixel values</string>
+    <string name="to_zero">SET_TOZERO</string>
+    <string name="threshtozeroinv">SET_TOZERO_INV</string>
+    <string name="thresholdbinary">BINARY</string>
+    <string name="thresholdbininv">BINARY_INV</string>
+    <string name="thresholdtruncate">TRUNCATE</string>
+
+    <string name="adaptivemean">ADAPT_MEAN</string>
+    <string name="adaptivegaussian">ADAPT_GAUSSIAN</string>
+    <string name="blocksize">Block Size</string>
+    <string name="constant">Subtraction Const</string>
+    <string name="medianblur">Median Blur Value</string>
+    <string name="gaussianblur">Gaussian Blur Value</string>
+
+    <string name="lh">LH: Lower Hue </string>
+    <string name="ls">LS: Lower Saturation </string>
+    <string name="lv">LV: Lower Value </string>
+    <string name="uh">UH: Upper Hue </string>
+    <string name="us">US: Upper Saturation </string>
+    <string name="uv">UV: Upper Value</string>
+
+
+    <string name="canny_contours">Canny with Contours</string>
+    <string name="canny_binary">Canny + BIN</string>
+    <string name="canny_binary_inv">Canny + BIN_INV</string>
+    <string name="canny_adaptive">Canny + ADAPTIVE</string>
+    <string name="canny_adaptive_inv">Canny + ADAPTIVE_INV</string>
+
+    <string name="absFirst">ABS/1ST</string>
+    <string name="absSeq">ABS/SEQ</string>
+    <string name="mog2">MOG2</string>
+    <string name="mog">MOG</string>
+    <string name="gmg">GMG</string>
+    <string name="knn">KNN</string>
+    <string name="cnt">CNT</string>
+    <string name="historyframes">No. of History Frames</string>
+    <string name="morphkernel">Morphological Kernel Size</string>
+
+    <string name="maxThreshCanny">MaxVal: when exceed</string>
+    <string name="thresholdValueCanny">Threshold: pixel values</string>
+    <string name="dilate_erode">Dilate-Erode</string>
+    <string name="inv_mask">Invert Mask</string>
+
+    <string name="learning_rate">Learning Rate</string>
+    <string name="detect_shadows">DetectShadows</string>
+    <string name="complexity_reduction">Complexity Reduce</string>
+    <string name="background_ratio">Background Ratio</string>
+
+    <string name="background">BACKGROUND</string>
+    <string name="server">SERVER</string>
+    <string name="client">CLIENT</string>
+    <string name="serverHeading">Act as a Server</string>
+    <string name="clientHeading">Join as a Client</string>
+    <string name="serverstatus">Server Status</string>
+    <string name="serverstatus_description">Please take a note of the ip address and port the server is running on. the client must be connected to the same network to communicate </string>
+
+    <string name="camerachoice">Camera Choice</string>
+    <string name="camerdescription">Choose which camera to use. Note that it can be very hard to maintain a steady unshaken behaviour with the front cam on</string>
+    <string name="resdescription">Choose camera resolution camera to use. Note: Maximum supported resolution may result in dropped frames.</string>
+    <string name="cameracolormode">Display Frames In</string>
+    <string name="cameracolodescription">Choose How you want to see the displayed Live feed from Camera</string>
+    <string name="cameraresolution">Camera Resolution</string>
+    <string name="modechoice">Interactions?</string>
+    <string name="modedescription">Choose Easy mode and we will select the best background subtraction Algorithm and proper parameters. Unless you want to tinker with different methods of subtractions</string>
+
+
+    <string name="clientstatus">Connection Status</string>
+    <string name="clientstatus_descOK_1">You are connected to the server as a master client. You can change the displayed frame parameters as you wish. All other connected clients can passively track what you see </string>
+    <string name="clientstatus_descOK_2">You are connected to the server as a passive client. You can not modify mirror parameters, but watch and track the main client </string>
+    <string name="clientstatus_desc_ERR">Error establishing a webSocket connection to the server. Maybe the server is not running or you are on a different network. If server is running try to connect to it manually </string>
+    <string name="finalerroclient">Doesn\'t seem that the server is running. or you may be on a different network</string>
+    <string name="tilesize">Mirror Tile Size</string>
+    <string name="tileshape">Mirror Tile Shape</string>
+    <string name="tilematerial">Mirror Tile Material</string>
+    <string name="detection_method">Surface Detection </string>
+    <string name="detection_method_description">Place  mirror manually tapping a horizontal or vertical plan, or Automatically detecting an Image</string>
+    <string name="tilesizedescription">Number of tiles in vertical and horizontal direction. More tiles the higher the chance of dropped frames.</string>
+    <string name="tileshapedescription">Expirement with different shapes and see how it affects final image on the wooden mirror</string>
+    <string name="tilematerialdescription">Different materials have different rendering behaviour.See how you look like on a wooden or a metal tiled mirror.</string>
+
+
+</resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliderLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ARmirrorS.Activities.ServerClientSelection">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="780dp"
+        android:layout_height="1082dp"
+        android:contentDescription="@string/background"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="-234dp"
+        tools:layout_editor_absoluteY="-97dp" />
+
+    <ImageView
+        android:id="@+id/sliderImage"
+        android:layout_width="304dp"
+        android:layout_height="301dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="62dp"
+        android:contentDescription="@string/server"
+        android:src="@drawable/ic_server2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageSelected"
+        android:layout_width="304dp"
+        android:layout_height="301dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="62dp"
+        android:contentDescription="@string/server"
+        android:src="@drawable/ic_selected"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sliderHeading"
+        android:layout_width="237dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/bauhaus"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="@+id/sliderImage"
+        app:layout_constraintStart_toStartOf="@+id/sliderImage"
+        app:layout_constraintTop_toBottomOf="@+id/sliderImage"
+        app:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/sliderText"
+        android:layout_width="340dp"
+        android:layout_height="113dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/consolab"
+        android:textAlignment="center"
+        android:textColor="@color/colorTransparentWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="@+id/sliderHeading"
+        app:layout_constraintStart_toStartOf="@+id/sliderHeading"
+        app:layout_constraintTop_toBottomOf="@+id/sliderImage" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

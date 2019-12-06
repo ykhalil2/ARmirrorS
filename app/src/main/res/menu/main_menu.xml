@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/camraOptionsGroup" >
+      <item
+          android:id="@+id/cameraOptions"
+          android:title="@string/view_camera"
+          android:icon="@drawable/ic_camera"
+          app:showAsAction="ifRoom|withText">
+
+          <menu>
+              <item
+                  android:id="@+id/rgba"
+                  android:title="@string/view_rgba"
+                  style="@android:style/TextAppearance.Small"
+                  app:showAsAction="ifRoom|withText" />
+
+              <item
+                  android:id="@+id/gray"
+                  android:title="@string/view_gray"
+                  style="@android:style/TextAppearance.Small"
+                  app:showAsAction="ifRoom|withText" />
+
+              <item
+                  android:id="@+id/mask"
+                  android:title="@string/view_mask"
+                  style="@android:style/TextAppearance.Small"
+                  app:showAsAction="ifRoom|withText" />
+
+              <item
+                  android:id="@+id/pixelated"
+                  android:title="@string/view_pixelated"
+                  style="@android:style/TextAppearance.Small"
+                  app:showAsAction="ifRoom|withText" />
+
+          </menu>
+      </item>
+    </group>
+
+    <group android:id="@+id/cameraResolutionGroup" >
+        <item
+            android:id="@+id/cameraResolution"
+            android:title="@string/view_camera_res"
+            app:showAsAction="ifRoom|withText"
+            android:icon="@drawable/ic_resolutions">
+
+        <menu>
+
+        </menu>
+
+        </item>
+    </group>
+
+</menu>

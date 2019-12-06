@@ -1,0 +1,68 @@
+{
+  animations: [
+    {
+      path: 'sampledata/square_copper.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'copper',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'copper',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/square_copper.fbx',
+    name: 'square_copper',
+    recenter: true,
+  },
+  samplers: [
+    {
+      file: 'sampledata/square_copper/copper.jpg',
+      name: 'copper',
+      pipeline_name: '..\\..\\..\\Documents\\square_copper\\copper.jpg',
+    },
+  ],
+  version: '0.54:2',
+}
