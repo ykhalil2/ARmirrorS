@@ -13,7 +13,7 @@ import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 
 public class MirrorNodes extends AnchorNode {
-
+    private int starter;
     private static Context context;
     private static AnchorNode anchorNode;
     private static Anchor anchor;

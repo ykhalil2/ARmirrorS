@@ -16,7 +16,7 @@ import java.nio.ByteBuffer;
 
 
 public class ARCoreClient extends WebSocketClient {
-
+    private int ARint;
     private static final String TAG = ARCoreClient.class.getSimpleName();
 
     private String clientStatus = ClientStatus.ID_CONNECTING;

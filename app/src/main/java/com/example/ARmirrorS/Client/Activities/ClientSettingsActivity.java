@@ -26,7 +26,7 @@ import java.net.URI;
 
 
 public class ClientSettingsActivity extends AppCompatActivity {
-
+    private int starter;
     private String clientStatus = "";
 
     private SlideAdapterClientSettings sliderAdapter;
@@ -53,6 +53,8 @@ public class ClientSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        starter = 0;
+        starter++;
         setContentView(R.layout.activity_client_settings);
 
         // Start By Connecting to the WebSocket Server and determine the client status if he is
@@ -88,6 +90,7 @@ public class ClientSettingsActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                starter++;
                 // if we are on the final slide (current position is 4) then start the correct next
                 // activity based on user selection
                 if (viewPager.getCurrentItem() == dots.length - 1) {

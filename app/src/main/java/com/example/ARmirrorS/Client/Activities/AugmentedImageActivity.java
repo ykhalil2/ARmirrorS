@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AugmentedImageActivity extends AppCompatActivity {
-
+    private int start = 0;
     // Intent Extra String Identifiers
     private static final String TILE_NO        = "TILE_NO";
     private static final String TILE_MATERIAL  = "TILE_MATERIAL";
@@ -59,6 +59,7 @@ public class AugmentedImageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        start++;
         setContentView(R.layout.activity_augmented_image);
 
 

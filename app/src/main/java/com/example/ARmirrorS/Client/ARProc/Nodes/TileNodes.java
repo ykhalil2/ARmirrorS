@@ -18,7 +18,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable;
 
 public class TileNodes extends AnchorNode {
 
-
+    private int tileNumber;
     private static Context context;
     private static Anchor anchor;
     private static AnchorNode anchorNode;

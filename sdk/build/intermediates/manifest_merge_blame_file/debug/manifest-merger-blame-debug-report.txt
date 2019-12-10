@@ -6,8 +6,8 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
-8-->/Users/yussufkhalil/AndroidStudioProjects/Final project/sdk/java/AndroidManifest.xml
+8-->C:\Users\17735\Downloads\College Work (Downloads)\1. Freshman\Sem 1\CS 125\Final Projet\ARmirrorS\sdk\java\AndroidManifest.xml
 9        android:targetSdkVersion="28" />
-9-->/Users/yussufkhalil/AndroidStudioProjects/Final project/sdk/java/AndroidManifest.xml
+9-->C:\Users\17735\Downloads\College Work (Downloads)\1. Freshman\Sem 1\CS 125\Final Projet\ARmirrorS\sdk\java\AndroidManifest.xml
 10
 11</manifest>
