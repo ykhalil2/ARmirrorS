@@ -137,6 +137,7 @@ public class ClientSettingsActivity extends AppCompatActivity {
                         // the new activity and wait there until Master client has completly setup
                         // the tile parameters
                         intent = new Intent(getApplicationContext(), AugmentedImageActivity.class);
+                        intent.putExtra(DETECTION_MODE, detectionMode);
 
                         // Start the intent Activity and finish
                         startActivity(intent);

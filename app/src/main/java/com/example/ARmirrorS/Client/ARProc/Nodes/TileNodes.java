@@ -233,17 +233,18 @@ public class TileNodes extends AnchorNode {
     }
 
     public void rotate() {
+
         float rotationAngle;
+        byte[] byteArray = MirrorApp.framesQ.poll();
 
         // Start rotating if we have rendered all tiles only.
         if (totalTilesBuilt >= cols*rows) {
 
-            byte[] receivedImage = MirrorApp.framesQ.poll();
-
-            if (receivedImage != null) {
-                for (int i = 0; i < cols; i++) {
-                    for (int j = 0; j < rows; j++) {
-                        rotationAngle = -10.0f; //(float) (Math.random() * 30f * (Math.random() > 0.5f ? 1f : -1f));
+            while (byteArray != null) {
+                int byteArrayIndex = 0;
+                for (int j = 0; j < rows; j++) {
+                    for (int i = 0; i < cols; i++) {
+                        rotationAngle = (float) byteArray[byteArrayIndex]; //(float) (Math.random() * 30f * (Math.random() > 0.5f ? 1f : -1f));
 
                         if (i % 2 == 1 || i == cols - 1) {
                             tile[j][i].setLocalRotation(
@@ -277,9 +278,10 @@ public class TileNodes extends AnchorNode {
                                 );
                             }
                         }
+                        byteArrayIndex++;
                     }
                 }
-
+                byteArray = MirrorApp.framesQ.poll();
             }
         }
     }

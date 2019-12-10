@@ -26,13 +26,13 @@
           interpolatedColor: null,
         },
         {
-          metallic: 0,
+          metallic: 0.85,
         },
         {
           metallicMap: null,
         },
         {
-          roughness: 1,
+          roughness: 0.3,
         },
         {
           roughnessMap: null,

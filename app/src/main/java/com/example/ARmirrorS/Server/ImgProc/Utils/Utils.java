@@ -7,7 +7,9 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.ImageReader;
 
+import com.example.ARmirrorS.Client.Constants.TileShape;
 import com.example.ARmirrorS.MirrorApp;
+import com.example.ARmirrorS.Server.Constants.CameraID;
 import com.example.ARmirrorS.Server.Constants.CameraParam;
 
 import org.opencv.android.CameraBridgeViewBase;
@@ -29,6 +31,8 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.example.ARmirrorS.Server.Activities.CameraActivity.cameraID;
 
 public class Utils {
 
@@ -249,8 +253,14 @@ public class Utils {
         // create cropped and downsized image to send ro client
         Mat cropped = new Mat(image, rectCrop);
 
-        //Fix rotation issue by rotating 90 clockwise
-        Core.rotate(cropped, cropped, Core.ROTATE_90_CLOCKWISE);
+        //Fix rotation issue by rotating 180 clockwise in case of back camera
+        if (cameraID.equals(CameraID.CAMERA_REAR_ID)) {
+            //Core.rotate(cropped, cropped, Core.ROTATE_90_COUNTERCLOCKWISE);
+            Core.flip(cropped, cropped, 0);
+            Core.rotate(cropped, cropped, Core.ROTATE_90_CLOCKWISE);
+            Core.rotate(cropped, cropped, Core.ROTATE_180);
+            //Core.rotate(cropped, cropped, Core.ROTATE_90_COUNTERCLOCKWISE);
+        }
 
         // Downscale the image to a maximum of 32 pixels and resize it
         int noTiles = (MirrorApp.getNoOFTiles() > 0) ? MirrorApp.getNoOFTiles() : 32;
@@ -267,28 +277,66 @@ public class Utils {
         // from 0 - 255 will be converted to an angle from -45 to 45 deg. where 127 will be equal
         // to zero
 
-        ByteBuffer byteBuffer = ByteBuffer.allocate(sendArray.length * 4);
+        //System.out.println("Un-Normalized array xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx->" + Arrays.toString(sendArray));
+
+        ByteBuffer byteBuffer = ByteBuffer.allocate(sendArray.length);
         for (int i = 0; i < sendArray.length; i++) {
-            if (sendArray[i] < 128) {
-                sendArray[i] = (byte) ((-128.0 / (double) sendArray[i] ) * 40.0);
-            } else {
-                sendArray[i] = (byte) ((128.0 / (double) sendArray[i] ) * 40.0);
-            }
-            byteBuffer.putInt(i, sendArray[i]);
+            sendArray[i] = (int) (((double) sendArray[i] / 255 ) * 60.0 - 30.0);
+            byteBuffer.put((byte) sendArray[i]);
         }
-        byte sendBlob[];
-        sendBlob = byteBuffer.array();
+        byteBuffer.rewind();
+
+        // in case we have triangle shapes create a new bytebuffer to accommodate the extra flipped
+        // triangles and fillers at left and right of each row of tiles. total tiles per row will be
+        // equal to senArray.length * 2 + noTiles
+        ByteBuffer byteBufferTriangle = null;
+        if (MirrorApp.getTileShape() == TileShape.ID_TRIANGLE) {
+            byteBufferTriangle = byteBuffer.allocate(sendArray.length * 2 + noTiles);
+            int average;
+
+            for (int i = 0; i < sendArray.length; i = i + noTiles) {
+                for (int j = 0; j <= noTiles; j++) {
+                    if (j == 0) {
+                        byteBufferTriangle.put((byte) sendArray[i]);
+                    } else if (j == noTiles) {
+                        byteBufferTriangle.put((byte) sendArray[i + noTiles - 1]);
+                        byteBufferTriangle.put((byte) sendArray[i + noTiles - 1]);
+                    } else {
+                        average = (sendArray[i + j - 1] + sendArray[i + j]) / 2;
+                        byteBufferTriangle.put((byte) sendArray[i + j - 1]);
+                        byteBufferTriangle.put((byte) average);
+                    }
+                }
+            }
+            byteBufferTriangle.rewind();
+        }
+
+        //System.out.println("   Normalized array xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx->" + Arrays.toString(sendArray));
+
 
         // if we are streaming then go ahead and broadcast the byte buffer message to all clients
         if (MirrorApp.getStartStream()) {
-            MirrorApp.sendMessage2Server(sendBlob);
+            if (MirrorApp.getTileShape() == TileShape.ID_TRIANGLE) {
+                MirrorApp.sendMessage2Clients(byteBufferTriangle);
+            } else {
+                MirrorApp.sendMessage2Clients(byteBuffer);
+            }
         }
 
         /** remove comments to print or dump the cropped image to send to client for
          *  debugging only
          */
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++>" + Arrays.toString(sendArray));
-        System.out.println( cropped.dump());
+
+        byte sendBlob[];
+        //Uncomment one line to dump byte array sent to client for triangles or regular shapes
+        //sendBlob = byteBuffer.array();
+        //sendBlob = byteBufferTriangle.array();
+
+        //
+        //System.out.println(sendBlob.length + "++++++++++++++++++++++++++++++++++++++++++++>" + Arrays.toString(sendBlob));
+
+        //Uncomment following line to dump the matrix instead of the byte array to be sent to client
+        //System.out.println(cropped.dump());
 
         return rectCrop;
     }

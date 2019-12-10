@@ -22,8 +22,11 @@ import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.URI;
+import java.nio.ByteBuffer;
 import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
@@ -68,7 +71,7 @@ public class MirrorApp extends Application {
     private static int tileMaterial             = TileMaterial.ID_UNDEFINED;
     private static int tileShape                = TileShape.ID_UNDEFINED;
     // Queue to hold all frames received from the server
-    public static PriorityQueue<byte[]> framesQ = new PriorityQueue<>();
+    public static Queue<byte[]> framesQ = new LinkedList<>();
 
 
     // Load OpenCV for debugging
@@ -230,6 +233,7 @@ public class MirrorApp extends Application {
         return timerRunning;
     }
 
+    public static void sendMessage2Clients(ByteBuffer blob) { webSocketServer.broadcast(blob); }
 
     //////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////HELPER FUNCTIONS///////////////////////////////////////
@@ -260,7 +264,7 @@ public class MirrorApp extends Application {
     public static void sendMessage2Server(String message) {
         webSocketClient.send(message);
     }
-    public static void sendMessage2Server(byte[] blob) {
+    public static void sendMessage2Server(ByteBuffer blob) {
         webSocketClient.send(blob);
     }
 

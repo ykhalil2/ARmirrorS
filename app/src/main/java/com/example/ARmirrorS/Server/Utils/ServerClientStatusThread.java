@@ -18,17 +18,19 @@ public class ServerClientStatusThread extends Thread {
         parentActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                TextView serverT = parentActivity.findViewById(R.id.ServerStatusDisplay);
-                TextView clientT = parentActivity.findViewById(R.id.ClienStatusDisplay);
+                //while (true) {
+                    TextView serverT = parentActivity.findViewById(R.id.ServerStatusDisplay);
+                    TextView clientT = parentActivity.findViewById(R.id.ClienStatusDisplay);
 
-                serverT.setText(MirrorApp.getWebSocketServerStatus());
-                clientT.setText(MirrorApp.getClientStatus());
+                    serverT.setText(MirrorApp.getWebSocketServerStatus());
+                    clientT.setText(MirrorApp.getClientStatus());
 
-                try {
-                    sleep(3 * 1000, 0);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                    try {
+                        sleep(5 * 1000, 0);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                //}
             }
         });
     }

@@ -152,6 +152,10 @@ public class AugmentedImageActivity extends AppCompatActivity {
      * Start the AR main activity
      */
     private void startAR() {
+        // first if we reached this point then all parameters has been set so remove the
+        // params not yet set layout by setting its visibility to gone
+        RelativeLayout paramsNotSetYet = findViewById(R.id.paramsNotSetYet);
+        paramsNotSetYet.setVisibility(View.GONE);
 
         arFragment = (AugmentedImageFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
         arFragment.getArSceneView().getScene().addOnUpdateListener(this::onUpdate);

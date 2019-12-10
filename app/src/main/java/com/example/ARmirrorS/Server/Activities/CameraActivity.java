@@ -60,7 +60,7 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     private int interactionLevel;
 
     // Set the Camera by Default to Back Camera
-    private static String cameraID = CameraID.CAMERA_FRONT_ID;
+    public static String cameraID = CameraID.CAMERA_FRONT_ID;
 
     // Loads camera view of OpenCV for us to use. This lets us see using OpenCV
     private CameraBridgeViewBase mOpenCvCameraView;
@@ -465,9 +465,6 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
             frame.setGray(inputFrame.gray());
             frame.setRgba(inputFrame.rgba());
         }
-
-        //MatOfByte buffer = new MatOfByte();
-        //byte[] x = buffer.toArray();
 
         // Process the image
         returnFrame = frame.process();
