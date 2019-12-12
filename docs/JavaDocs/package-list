@@ -1,0 +1,16 @@
+com.example.ARmirrorS
+com.example.ARmirrorS.Activities
+com.example.ARmirrorS.Activities.Utils
+com.example.ARmirrorS.Client.ARProc.Nodes
+com.example.ARmirrorS.Client.ARProc.Utils
+com.example.ARmirrorS.Client.Activities
+com.example.ARmirrorS.Client.Constants
+com.example.ARmirrorS.Client.Socket
+com.example.ARmirrorS.Client.Utils
+com.example.ARmirrorS.Constatnts
+com.example.ARmirrorS.Server.Activities
+com.example.ARmirrorS.Server.Constants
+com.example.ARmirrorS.Server.ImgProc.Algorithms
+com.example.ARmirrorS.Server.ImgProc.Utils
+com.example.ARmirrorS.Server.Socket
+com.example.ARmirrorS.Server.Utils
