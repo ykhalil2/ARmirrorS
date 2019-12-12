@@ -17,23 +17,54 @@ import com.example.ARmirrorS.R;
 
 import org.opencv.video.Video;
 
+/**
+ * <h1>Class ServerGUISetup</h1>
+ * Class <b>ServerGUISetup</b> used to handle all related server User Interface for all image
+ * subtraction processing algorithms, and data collection.
+ * <p>
+ *  Mainly is used for setting up all sliders/seek bars and switches
+ *  as well as radio groups and buttons for methods.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see ImageProcessParam
+ * @see Frame
+ * @see SeekBar
+ * @see Switch
+ * @see RadioGroup
+ * @see Activity
+ */
+
 public class ServerGUISetup {
 
+    /**Parent Activity Running Context.*/
     private Activity parentActivity;
 
-
     /**
+     * Constructor for server GUI.
      *
-     * @param parent
+     * @param parent parent context activity.
      */
     public ServerGUISetup(Activity parent) {
         parentActivity = parent;
     }
 
     /**
+     * Method handels:
      *
-     * @param position
-     * @param frame
+     * 1. Setup Chunk View
+     * 2. Setup Radio Button for subtraction Mode.
+     * 3. Setup SeekBar Listeners callback functions to monitor user input-progress.
+     * <p>
+     *
+     * @param position Spinner position which matches the Subtraction Algorithm ID's.
+     * @param frame currently being processed frame.
+     *
      */
     public void run(final int position, Frame frame) {
 
@@ -48,8 +79,9 @@ public class ServerGUISetup {
     }
 
     /**
+     * Inflate the chunks based on requested subtraction processing algorithm.
      *
-     * @param position
+     * @param position Spinner position which matches the Subtraction Algorithm ID's.
      */
     private void setupChunk(final int position) {
 
@@ -125,9 +157,11 @@ public class ServerGUISetup {
     }
 
     /**
+     * Responsible for setting up All radioGroups and buttons for all processing methods.
+     * It registers all onClick listeners as well.
      *
-     * @param position
-     * @param frame
+     * @param position Spinner position which matches the Subtraction Algorithm ID's.
+     * @param frame currently being processed frame.
      */
     private void setupRadioButtons(final int position, Frame frame) {
 
@@ -306,8 +340,10 @@ public class ServerGUISetup {
     }
 
     /**
+     * Responsible for setting up seek bars and switches for all processing methods.
+     * It registers all onClick listeners as well.
      *
-     * @param position
+     * @param position Spinner position which matches the Subtraction Algorithm ID's.
      */
     private void setupSeekBars(final int position, Frame frame) {
 

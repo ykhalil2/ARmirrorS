@@ -6,7 +6,6 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,26 +18,51 @@ import com.example.ARmirrorS.MirrorApp;
 import com.example.ARmirrorS.R;
 import com.example.ARmirrorS.Server.Activities.ServerSettingsActivity;
 
+/**
+ * <h1>Class ServerClientSelection</h1>
+ * Class <b>ServerClientSelection</b> Handles the selection of Server or Client by the user. Also
+ * responsible for setting up the Slider Adapter and ViewPager, which will be used to gather info
+ * from the user.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see AppCompatActivity
+ * @see ViewPager
+ * @see SliderAdapter
+ */
+
 public class ServerClientSelection extends AppCompatActivity {
 
+    /** SliderAdapter Object Reference used to handle data collection on each page.*/
     private SliderAdapter sliderAdapter;
+    /** ViewPager object reference.*/
     private ViewPager     viewPager;
-
-    // Bottom Layout to include the dotts and next and back buttons
+    /**Bottom Layout to include the dots and next and back buttons.*/
     private LinearLayout  dotsLayout;
+    /**Dots to indicate How many pages will be visible in the current Activity.*/
     private TextView[]    dots;
+    /**Next button at bottom of activity can change to FINISH on last page.*/
     private Button        nextButton;
+    /**back button at bottom of activity can be invisible on first page.*/
     private Button        previousButton;
-
-    // set current page to 0 initially
+    /**set current page to 0 initially.*/
     private int           currentPage = 0;
-
-    // New intent to start proper activity based on user selection to act as a client or a server.
+    /**New intent to start proper activity based on user selection to act as a client or a server.*/
     private Intent        intent;
-
-    // User modes either Server or Client
+    /**User modes either Server or Client.*/
     private int           userMode = UserMode.USER_MODE_UNDEFINED;
 
+    /**
+     * Called by the Android system when the activity is created.
+     *
+     * @param savedInstanceState saved state from the previously terminated instance of this
+     *                           activity (unused).
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +89,12 @@ public class ServerClientSelection extends AppCompatActivity {
          *
          * if a user has selected a mode of play. we will launch the next activity. Otherwise
          * increment the item of the ViewPager by one, and return.
+         *
+         * Get the current user mode from application context setup by user selection of the
+         * slide. if we are on the final slide (current position is 1) then start the correct next
+         * activity based on user selection. Otherwise do nothing just increment the viewPager
+         * currentItem and return. Here clicking on finish will not perform any tasks. the user
+         * must select a mode first.
          *
          */
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +130,7 @@ public class ServerClientSelection extends AppCompatActivity {
         /**
          * Onclick listener for Back buttons.
          *
-         * Only dectrement the current page number for the slide by 1 for internal tracking by
+         * Only decrement the current page number for the slide by 1 for internal tracking by
          * Android.
          *
          */
@@ -141,12 +171,20 @@ public class ServerClientSelection extends AppCompatActivity {
     }
 
     /**
-     * Call back for viewPager onchange listener. Called when slides are updated by swiptes
+     * Call back for viewPager onchange listener. Called when slides are updated by swipes
      * or other infractions.
      *
      */
     ViewPager.OnPageChangeListener viewListner = new ViewPager.OnPageChangeListener() {
 
+        /**
+         * Called when users slides to a different page with a new position. Mainly will be
+         * used to handle displaying the proper text at the bottom of the activity. If we are
+         * on first page NO back button will be displayed. If we are on final Page only NEXT button
+         * will be changed to FINISH. Otherwise NEXT and BACK buttons will be displayed.
+         *
+         * @param position current position of the page user is viewing
+         */
         @Override
         public void onPageSelected(int position) {
 

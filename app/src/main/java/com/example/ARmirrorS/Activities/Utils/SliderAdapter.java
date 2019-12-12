@@ -13,24 +13,49 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.example.ARmirrorS.MirrorApp;
 import com.example.ARmirrorS.R;
 
+/**
+ * <h1>Class SliderAdapter</h1>
+ * Class <b>SliderAdapter</b> used to handle collection of data from user on all pages associated
+ * with the application mode selection (Client/Server).
+ *
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see PagerAdapter
+ * @see Activity
+ */
+
 public class SliderAdapter extends PagerAdapter {
 
+    /**Parent Activity Running Context.*/
     private Context context;
-
+    /**Array storing Integer value of Drawable resource to display at top of each page.*/
     private static int[] sliderImages;
-
+    /**Array storing Integer value of Drawable resources to overlap the image and highlight current
+     * selection.*/
     private static int[] overlayImages;
-
+    /**Array storing Integer value of Drawable resource of each page background image.*/
     private static int[] sliderBackground;
-
+    /**Array storing Integer value of string resources for heading text of each page.*/
     private static String[] sliderHeadings;
-
+    /**Array storing Integer value of string resources for bottom description of a page.*/
     private static String[] slidersDescription;
-
+    /**Selected User Mode.*/
     private static int userMode;
-
+    /**----NA----.*/
     private static ImageView[] selected;
 
+    /**
+     * Constructor for the Client/Server slider Adapter activity.
+     *
+     * @param setContext parent activity context.
+     * @param setUserMode selected user mode of application ( server or client ).
+     */
     public SliderAdapter(Context setContext, int setUserMode) {
 
         // setup the internal variables and image resource arrays for the two slides
@@ -66,6 +91,11 @@ public class SliderAdapter extends PagerAdapter {
         };
     }
 
+    /**
+     * Retrieves the number of pages in the slider.
+     *
+     * @return number of pages to display.
+     */
     @Override
     public int getCount() {
         return sliderBackground.length;
@@ -76,6 +106,14 @@ public class SliderAdapter extends PagerAdapter {
         return view == object;
     }
 
+    /**
+     * Called to instantiate a page. And expands all appropriate chunks, setup buttons, radio Groups
+     * scroll Views, etc. In addition all onClick callbacks will be handled within.
+     *
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -139,6 +177,14 @@ public class SliderAdapter extends PagerAdapter {
         return chunk;
     }
 
+    /**
+     * Called to destroy a page from the slider. Currently not being used since we need to keep
+     * track of all user inputs and not have the user reselect parameters again.
+     *
+     * @param container parent view to remove appropriate chunk from.
+     * @param position slide position (0, 1, etc.)
+     * @param object View to be removed.
+     */
     @Override
     public void destroyItem(ViewGroup container, int position, @NonNull  Object object) {
         container.removeAllViews();

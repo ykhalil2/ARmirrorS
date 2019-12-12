@@ -15,31 +15,59 @@ import com.example.ARmirrorS.MirrorApp;
 import com.example.ARmirrorS.R;
 import com.example.ARmirrorS.Server.Utils.SlideAdapterServerSettings;
 
+/**
+ * <h1>Class ServerSettingsActivity</h1>
+ * Class <b>ServerSettingsActivity</b> Handles the retrieval of all Client parameters by the user.
+ * Responsible for setting up the Slider Adapter and ViewPager, which will be used to gather info
+ * from the user.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see AppCompatActivity
+ * @see ViewPager
+ * @see SlideAdapterServerSettings
+ */
+
 public class ServerSettingsActivity extends AppCompatActivity {
 
+    /**Server Status used internally to check if server has started and display IP address.*/
     private String serverStatus = "";
-
+    /** SliderAdapter Object Reference used to handle data collection on each page.*/
     private SlideAdapterServerSettings sliderAdapter;
+    /** ViewPager object reference.*/
     private ViewPager     viewPager;
-
-    // Bottom Layout to include the dotts and next and back buttons
+    /**Bottom Layout to include the dots and next and back buttons.*/
     private LinearLayout  dotsLayout;
+    /**Dots to indicate How many pages will be visible in the current Activity.*/
     private TextView[]    dots;
+    /**Next button at bottom of activity can change to FINISH on last page.*/
     private Button        nextButton;
+    /**back button at bottom of activity can be invisible on first page.*/
     private Button        previousButton;
-
-    // set current page to 0 initially
+    /**set current page to 0 initially.*/
     private int           currentPage = 0;
-
-    // New intent to start proper activity based on user selection to act as a client or a server.
+    /**New intent to start proper activity based on user selection to act as a client or a server.*/
     private Intent        intent;
-
-    // Intent Extra String Identifiers
+    /**Camera Index String to be used in Extras of appropriate Intent.*/
     private static final String CAM_INDEX      = "CAM_INDEX";
+    /**Camera Resolution String to be used in Extras of appropriate Intent.*/
     private static final String CAM_RESOLUTION = "CAM_RESOLUTION";
+    /**Camera Mode String to be used in Extras of appropriate Intent.*/
     private static final String CAM_MODE       = "CAM_MODE";
+    /**Expert or Eassy Server Interaction Mode String to be used in Extras of appropriate Intent.*/
     private static final String USER_MODE      = "SERVER_USER_MODE";
 
+    /**
+     * Called by the Android system when the activity is created.
+     *
+     * @param savedInstanceState saved state from the previously terminated instance of this
+     *                           activity (unused).
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +100,14 @@ public class ServerSettingsActivity extends AppCompatActivity {
          * if a user has selected a mode of play. we will launch the next activity. Otherwise
          * increment the item of the ViewPager by one, and return.
          *
+         * if we are on the final slide (current position is 4) then start the correct next
+         * activity based on user selection.
+         *
+         * Start a new intent and pass these values in the extras parameters to begin the main
+         * server activity
+         *
+         * Otherwise do nothing just increment the viewPager currentItem and return. Here clicking
+         * on finish will not perform any tasks. the user must select a mode first
          */
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +151,7 @@ public class ServerSettingsActivity extends AppCompatActivity {
         /**
          * Onclick listener for Back buttons.
          *
-         * Only dectrement the current page number for the slide by 1 for internal tracking by
+         * Only decrement the current page number for the slide by 1 for internal tracking by
          * Android.
          *
          */
@@ -162,6 +198,14 @@ public class ServerSettingsActivity extends AppCompatActivity {
      */
     ViewPager.OnPageChangeListener viewListner = new ViewPager.OnPageChangeListener() {
 
+        /**
+         * Called when users slides to a different page with a new position. Mainly will be
+         * used to handle displaying the proper text at the bottom of the activity. If we are
+         * on first page NO back button will be displayed. If we are on final Page only NEXT button
+         * will be changed to FINISH. Otherwise NEXT and BACK buttons will be displayed.
+         *
+         * @param position current position of the page user is viewing
+         */
         @Override
         public void onPageSelected(int position) {
 
@@ -208,7 +252,8 @@ public class ServerSettingsActivity extends AppCompatActivity {
     };
 
     /**
-     * Start the web socket server and update the status
+     * Start the web socket server and update the Server status.
+     *
      */
     private void startServer() {
         // Start the Server and see if it is working properly.

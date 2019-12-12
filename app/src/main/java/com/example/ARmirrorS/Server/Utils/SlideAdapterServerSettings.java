@@ -18,26 +18,55 @@ import com.example.ARmirrorS.R;
 import com.example.ARmirrorS.Server.Constants.CameraID;
 import com.example.ARmirrorS.Server.Constants.CameraParam;
 
+/**
+ * <h1>Class SlideAdapterServerSettings</h1>
+ * Class <b>SlideAdapterServerSettings</b> used to handle collection of data from user on all pages
+ * associated with the Server Parameters including:-
+ * <p>
+ * 1. Display the ip address and server status
+ * 2. Camera Selection Front and Back
+ * 3. Camera Resolution (640x480 or Maximum)
+ * 4. Camera Display ( color / gray / or mask)
+ * 5. User Interaction Level (Expert or Easy Mode)
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see PagerAdapter
+ * @see Activity
+ */
+
 public class SlideAdapterServerSettings extends PagerAdapter{
 
-    // Calling Activity Context
+    /**Parent Activity Running Context.*/
     private Context context;
-
+    /**Array storing Integer value of Drawable resource to display at top of each page.*/
     private static int[] sliderImages;
+    /**Array storing Integer value of string resources for heading text of each page.*/
     private static String[] sliderHeadings;
+    /**Array storing Integer value of string resources for bottom description of a page.*/
     private static String[] slidersDescription;
 
     // Values to be passed as part of the extra content for the new Camera main Activity
+
+    /**Camera Index (Rear or Front) to be passed in Extras of intent to next Activity.*/
     private static String cameraIndex      = null;
+    /**Camera Resolution passed in Extras of intent to next Activity.*/
     private static int    cameraResolution = -1;
-    private static int    camearMode       = -1;
+    /**Camera Color Mode or Mask to be passed in Extras of intent to next Activity.*/
+    private static int    cameraMode       = -1;
+    /**Expert or Easy Interaction Mode to be passed in Extras of intent to next Activity.*/
     private static int    userMode         = -1;
 
     /**
      *  Constructs a SlideAdapterServerSettings to be used when slides/items are instantiated
      *  according to user input.
      *
-     * @param setContext
+     * @param setContext parent activity context.
      */
     public SlideAdapterServerSettings(Context setContext) {
 
@@ -63,6 +92,11 @@ public class SlideAdapterServerSettings extends PagerAdapter{
         };
     }
 
+    /**
+     * Retrieves the number of pages in the slider.
+     *
+     * @return number of pages to display.
+     */
     @Override
     public int getCount() {
         return sliderImages.length;
@@ -73,6 +107,24 @@ public class SlideAdapterServerSettings extends PagerAdapter{
         return view == object;
     }
 
+    /**
+     * Called to instantiate a page. And expands all appropriate chunks, setup buttons, radio Groups
+     * scroll Views, etc. In addition all onClick callbacks will be handled within.
+     * <p>
+     * Note that:
+     *
+     * First Slide : Display the ip address and server status
+     * Second Slide: Camera Selection Front and Back
+     * Third Slide: Camera Resolution
+     * Fourth Slide: Camera Display ( color / gray / or mask)
+     * Fifth Slide: Expert or Easy Mode.
+     * <p>
+     *
+     * </p>
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -278,7 +330,7 @@ public class SlideAdapterServerSettings extends PagerAdapter{
                                     , 0
                             );
                             // Set Camera Mode
-                            camearMode = CameraParam.VIEW_MODE_RGBA;
+                            cameraMode = CameraParam.VIEW_MODE_RGBA;
                             break;
                         case R.id.grayImage:
                             gray.setButtonDrawable(R.drawable.ic_camera_gray);
@@ -301,7 +353,7 @@ public class SlideAdapterServerSettings extends PagerAdapter{
                                     , 0
                             );
                             // Set Camera Mode
-                            camearMode = CameraParam.VIEW_MODE_GRAY;
+                            cameraMode = CameraParam.VIEW_MODE_GRAY;
                             break;
                         case R.id.maskImage:
                             mask.setButtonDrawable(R.drawable.ic_camera_mask);
@@ -324,7 +376,7 @@ public class SlideAdapterServerSettings extends PagerAdapter{
                                     , 0
                             );
                             // Set Camera Mode
-                            camearMode = CameraParam.VIEW_MODE_MASK;
+                            cameraMode = CameraParam.VIEW_MODE_MASK;
                             break;
                     }
                 });
@@ -393,24 +445,54 @@ public class SlideAdapterServerSettings extends PagerAdapter{
         return null;
     }
 
+    /**
+     * Called to destroy a page from the slider. Currently not being used since we need to keep
+     * track of all user inputs and not have the user reselect parameters again.
+     *
+     * @param container parent view to remove appropriate chunk from.
+     * @param position slide position (0, 1, etc.)
+     * @param object View to be removed.
+     */
     @Override
     public void destroyItem(ViewGroup container, int position, @NonNull  Object object) {
        //container.removeView((ConstraintLayout) object);
     }
 
-
+    /**
+     * Retrieve the Camera Index.
+     *
+     * @return cameraIndex | rear or front camera.
+     * @see CameraID
+     */
     public String getCameraIndex() {
         return cameraIndex;
     }
 
+    /**
+     * Get Requested Camera Resolution.
+     *
+     * @return cameraResolution | 640x480 or Maximum resolution.
+     * @see CameraParam
+     */
     public int getCameraResolution() {
         return cameraResolution;
     }
 
+    /**
+     * Obtain frame display mode.
+     *
+     * @return cameraMode | color frames, gray scale, or masked frames.
+     * @see CameraParam
+     */
     public int getCamearMode() {
-        return camearMode;
+        return cameraMode;
     }
 
+    /**
+     * Returns the Interaction level with the server requested by the user.
+     *
+     * @return userMode | easy or expert interaction with server.
+     */
     public int getUserMode() {
         return userMode;
     }

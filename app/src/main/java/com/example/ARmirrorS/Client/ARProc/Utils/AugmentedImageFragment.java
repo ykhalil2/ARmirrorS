@@ -12,23 +12,55 @@ import com.google.ar.core.Config;
 import com.google.ar.core.Session;
 import com.google.ar.sceneform.ux.ArFragment;
 
-public class AugmentedImageFragment extends ArFragment {
+/**
+ * <h1>Class AugmentedImageFragment</h1>
+ * Class <b>AugmentedImageFragment</b> handles Setting up the augmented image fragment view and ties
+ * it to the AR core session. Class extend the ArFragment to customize the ARCore session
+ * configuration to include Augmented Images, and not just ttrack horizontal and vertical planes.
+ *
+ * the role of SLAVE.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see AugmentedImageDatabase
+ * @see Config
+ * @see Session
+ * @see ArFragment
+ */
 
+public class AugmentedImageFragment extends ArFragment {
 
     private static final String TAG = "AugmentedImageFragment";
 
-    // This is the name of the image in the sample database. A copy of the image is in the assets
-    // directory.
+    /**This is the name of the image in the sample database. A copy of the image is in the assets
+     * directory.
+     */
     private static final int DEFAULT_IMAGE_NAME = R.drawable.ic_tracked_image;
 
-
+    /**
+     * Configure the AR session and AugmentedImageFragment view which holds our camera interactions.
+     * First we set our configuration parameters to use Auto Focus and Latest updated image as well
+     * as use HDR lighting for rendering purposes. Secondly, we set the plane detection method based
+     * on user input. And finally configure the session and tie the session to our ARSceneView.
+     *
+     * In case augmented image tracking is required we also setup augmented image database.
+     *
+     * @param session AR session to configure.
+     * @return AR session configuration object.
+     *
+     */
     @Override
     protected Config getSessionConfiguration(Session session) {
 
         // 1st create a configuration object
         Config config = super.getSessionConfiguration(session);
 
-        // 2nd set our configuration parameters to use Auro Focus and Latest updated image
+        // 2nd set our configuration parameters to use Auto Focus and Latest updated image
         // as well as use HDR lighting for rendering purposes
         config.setLightEstimationMode(Config.LightEstimationMode.ENVIRONMENTAL_HDR);
 
@@ -58,7 +90,15 @@ public class AugmentedImageFragment extends ArFragment {
         return config;
     }
 
-
+    /**
+     * configure an AugmentedImageDatabase, by adding Bitmap to DB directly. After reading the
+     * bitmap image, Create the augmented image database object and add the bitmap image to it.
+     * Finally update our configuration with the database and image and return.
+     *
+     * @param config Configuration object for the current AR session of the Augmented Image Fragment.
+     * @param session AR session to configure.
+     * @return true if augmented image to track has been read successfully and added to database.
+     */
     private boolean setupAugmentedImageDatabase(Config config, Session session) {
         AugmentedImageDatabase augmentedImageDatabase;
 

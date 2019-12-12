@@ -9,12 +9,37 @@ import com.example.ARmirrorS.R;
 import com.example.ARmirrorS.Server.Constants.ImageProcessParam;
 import com.example.ARmirrorS.Server.ImgProc.Utils.Frame;
 
+/**
+ * <h1>Class FrameCaptureTimer</h1>
+ * Class <b>FrameCaptureTimer</b> Timer class used to give the user 15 seconds to place the camera
+ * statically in case he has selected the Absolute 1st frame Difference subtraction processing
+ * method.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see Activity
+ * @see CountDownTimer
+ */
+
 public class FrameCaptureTimer {
 
+    /**Parent Activity Running Context.*/
     private static Activity parentActivity;
+    /**Count Down Timer object reference.*/
     private static CountDownTimer mTimer;
 
-
+    /**
+     * starts a count down timer that ticks every second for 15 seconds, and in case the user has
+     * not changed the processing method, captures the reference frame and starts algorithm.
+     *
+     * @param parent parent activity context.
+     * @param frame current frame being processed
+     */
     public static void start(Activity parent, Frame frame) {
 
         parentActivity = parent;

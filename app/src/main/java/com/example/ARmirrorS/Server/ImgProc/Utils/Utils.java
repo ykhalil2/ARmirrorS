@@ -25,18 +25,42 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static com.example.ARmirrorS.Server.Activities.CameraActivity.cameraID;
 
+/**
+ * <h1>Class Utils</h1>
+ * Class <b>Utils</b> contains multiple general utility function used for camera interaction as well
+ * as for frame processing:-
+ * <p>
+ * 1. Getting Camera Supported Resolutions.
+ * 2. Getting Average HSV hue value of an image from Hue Channel.
+ * 3. Morphing the final mask for better quality.
+ * 4. Mask the frame with processed image to display to user.
+ * 5. Send the masked or pixlated image to client if streaming has started.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ */
 public class Utils {
 
-
+    /**
+     * Called to populate the menu items with the supported camera resolutions, in case the user
+     * decides to change it later on.
+     *
+     * @param mCameraView reference to OpenCV cameraView Object.
+     * @param cameraID Front or Back Camera ID.
+     * @return Array of all supported Resolutions by Camera.
+     */
     public static int[][] getCameraResolutions(CameraBridgeViewBase mCameraView, String cameraID) {
 
         JavaCamera2View.JavaCameraSizeAccessor accessor = new JavaCamera2View.JavaCameraSizeAccessor();
@@ -146,6 +170,13 @@ public class Utils {
      * Function to return an image to display on screen based on choice of Camera View Mode
      * chosen by user.
      *
+     * <b>ONLY</b> In case of masked or pixelated view mode: we will send the processed image to
+     * the client if he has requested the server to start streaming. Otherwise we will mask the
+     * gray scale image or the color frame and displays it to the screen.
+     *
+     * For Pixelated image we will also create a rectangle (region of interest) to show the user
+     * what will be sent to the client which is a cropped version of the viewable frame.
+     *
      *@param currentFrame
      *         the current frame being processed with all its channels
      * @param currentMask
@@ -185,12 +216,10 @@ public class Utils {
             case CameraParam.VIEW_MODE_MASK:  {
 
                 // If the user is connected. Check the requested tile size
-                if (/*MirrorApp.getNoOFTiles() != 0*/ true ) {
-                    Mat image = currentMask.clone();
+                Mat image = currentMask.clone();
 
-                    // Create Region of interest to crop image and send
-                    createROI(image);
-                }
+                // Create Region of interest to crop image and send
+                createROI(image);
 
                 return currentMask;
             }
@@ -204,7 +233,7 @@ public class Utils {
                 Mat image = currentFrame.mGray.clone();
 
                 // Create Region of interest to draw a rectangle on the screen of what will be
-                // transfered to client
+                // transferred to client
                 Rect rectCrop = createROI(image);
 
                 // Finally pixlate the image by reducing its size to number set by client
@@ -240,6 +269,28 @@ public class Utils {
         return currentFrame.mRgba;
     }
 
+    /**
+     * Function mainly Downscale the image to a maximum of 32 pixels (based on user desire)
+     * and resize it, then Convert the cropped masked image of black and whites to an array to
+     * send to client.
+     *
+     * Normalize values of the array to bytes from -45 degree to 45 degrees. Every pixel value
+     * from 0 - 255 will be converted to an angle from -45 to 45 deg. where 127 will be equal
+     * to zero.
+     *
+     * in case we have triangle shapes create a new bytebuffer to accommodate the extra flipped
+     * triangles and fillers at left and right of each row of tiles. total tiles per row will be
+     * equal to senArray.length * 2 + noTiles.
+     *
+     * if we are streaming then go ahead and broadcast the byte buffer message to all clients.
+     *
+     * <p>
+     *
+     *
+     * @param image Matrix representing the current processed frame
+     *
+     * @return cropped rectangle to superimpose on displayed image (server side)
+     */
     private static Rect createROI(Mat image) {
 
         // create cropping rectangle
@@ -259,7 +310,6 @@ public class Utils {
             Core.flip(cropped, cropped, 0);
             Core.rotate(cropped, cropped, Core.ROTATE_90_CLOCKWISE);
             Core.rotate(cropped, cropped, Core.ROTATE_180);
-            //Core.rotate(cropped, cropped, Core.ROTATE_90_COUNTERCLOCKWISE);
         }
 
         // Downscale the image to a maximum of 32 pixels and resize it
@@ -323,7 +373,7 @@ public class Utils {
             }
         }
 
-        /** remove comments to print or dump the cropped image to send to client for
+        /* remove comments to print or dump the cropped image to send to client for
          *  debugging only
          */
 
@@ -341,11 +391,3 @@ public class Utils {
         return rectCrop;
     }
 }
-
-
-/**
- private int convertByteArrayToInt(byte[] intBytes){
- ByteBuffer byteBuffer = ByteBuffer.wrap(intBytes);
- return byteBuffer.getInt();
- }
- */

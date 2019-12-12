@@ -16,34 +16,87 @@ import com.google.ar.sceneform.math.Quaternion;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 
+/**
+ * <h1>Class TileNodes</h1>
+ * Class <b>TileNodes</b> used to build the rendereable tiles and place the tiles inside the mirror.
+ * We use completable futures here to simplify the error handling and asynchronous loading. It also
+ * starts the process rotating the tiles based on the byteArray received from the server with
+ * processed mask including normalized rotation angle of each tile between +30 and -30 degrees.
+ *
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see Anchor
+ * @see AnchorNode
+ * @see Node
+ * @see Quaternion
+ * @see Vector3
+ * @see ModelRenderable
+ */
+
 public class TileNodes extends AnchorNode {
 
-
+    private int tileNumber = 0;
+    /**Parent Activity Running Context.*/
     private static Context context;
+    /**Parent Anchor for mirror obtained from pose based on hit plane detection or augmented image.*/
     private static Anchor anchor;
+    /**Parent Anchor Node for mirror which is tied to the anchor created from center pose of plane.*/
     private static AnchorNode anchorNode;
+    /**2 dimensional array containing tiles nodes and associated local positions and rotation angles.*/
     public static Node[][] tile;
-
+    /**number of tile columns. in case of triangle shapes there will be roughly twice the amount of
+     * tiles in x direction than in the y direction
+     */
     private static int cols;
+    /**number of tile rows.*/
     private static int rows;
-
-    // used to position tiles in local coordinates
+    /**Actual Mirror height in meters. Used to position tiles in local coordinates.*/
     private static final float MIRROR_HEIGHT = 1.696f;
+    /**Actual Mirror Frame width in meters. Used to offset the tiles in Y direction when placing.*/
     private static final float FRAME_HEIGHT  = 0.198f;
+    /**Gap between tiles is 3 millimeters.*/
     private static final float TILE_GAP      = 0.003f;
-
+    /**position in X direction of the current tile to be placed in the scene.*/
     private static int   positionX = 0;
+    /**position in Y direction of the current tile to be placed in the scene.*/
     private static int   positionY = 0;
+    /**Actual Y local location in meters of current tile to be placed measured from center of Mirror.*/
     private static float locationY = (MIRROR_HEIGHT) / 2.0f;
+    /**In case of triangle shape tiles there will be half filler triangle. This is the current X position.*/
     private static int   fillerPositionX = 0;
+    /**In case of triangle shape tiles there will be half filler triangle. This is the current Y position.*/
     private static int   fillerPositionY = 0;
+    /**Actual Y local location in meters of current filler tile to be placed measured from center of Mirror.*/
     private static float fillerLocationY = MIRROR_HEIGHT / 2.0f;
-
+    /**Total number of tiles built and rendered to scene. Needed because of async calls.*/
     private static int   totalTilesBuilt = 0;
-
-
+    /**In case of Triangle shapes we need to add an additional 180 degree rotation because of flips.*/
     private static float additionalRotation = 0;
 
+
+    /**
+     * Constructor for building the wood/metal tiles and setting their anchor and parent anchor node.
+     * It performs the task of placing the tiles in the scene.
+     *
+     * First it sets the node array based on the size of the tiles requested by the user.
+     * Note that for triangle shapes the rows will not change however the colums will be increased
+     * to account for flipped triangles and padding at both ends. So for an n tiles we will
+     * effectively have n [norma] + (n-1) [flipped] + 2 halves at the end.
+     *
+     * Finally set the first tile position is top left hand corner of the Mirror Frame.
+     *
+     * @param setParent Parent Activity Running Context.
+     * @param setAnchorNode Parent Anchor Node for Tiles which is tied to the anchor created from
+     *                      center pose of detected plane or augmented image.
+     * @param setAnchor Parent Anchor for Tiles obtained from pose based on hit plane detection or
+     *                  augmented image
+     */
     TileNodes(Context setParent, AnchorNode setAnchorNode, Anchor setAnchor) {
         context = setParent;
         anchorNode = setAnchorNode;
@@ -53,7 +106,7 @@ public class TileNodes extends AnchorNode {
         // Set the node array based on the size of the tiles requested by the user. Note that for
         // triangle shapes the rows will not change however the colums will be increased to account
         // for flipped triangles and padding at both ends. So for an n tiles we will effectively
-        // have n [norma] + (n-1) [flipped] + 2 halfs at the end
+        // have n [norma] + (n-1) [flipped] + 2 halves at the end
         cols = MirrorApp.getNoOFTiles();
         rows = cols;
 
@@ -77,6 +130,14 @@ public class TileNodes extends AnchorNode {
     }
 
 
+    /**
+     * Models of the tiles.  We use completable futures here to simplify the error handling
+     * and asynchronous loading.  The loading is started with the first construction of an instance,
+     * and then used when the image is set.
+     *
+     * The method will Build the renderable and wait until its ready to place it in the scene by
+     * calling function addMirrorNode ToScene.
+     */
     private void placeTiles() {
         // Create the name of the 3d object file by concatenating the strings from the constants
         // class
@@ -84,7 +145,6 @@ public class TileNodes extends AnchorNode {
                 + TileMaterial.fileMap.get(MirrorApp.getTileMaterial());
 
         Uri tileParse = Uri.parse(fileName);
-
 
         // in case of square or circle we will perform the same operation since the layout is
         // identical
@@ -130,7 +190,25 @@ public class TileNodes extends AnchorNode {
     }
 
 
-
+    /**
+     * Called when the AugmentedImage is detected and should be rendered. A Sceneform node tree is
+     * created based on an Anchor created from the image or the center pose of the detected plane.
+     *
+     * The tiles are then positioned based on the center of the parent node (the mirror renderable).
+     *
+     * There is no need to worry about world coordinates since everything is relative to the
+     * center of the image, which is the parent node of the mirror and subsequently the tiles.
+     *
+     * Here we create a new node for each tile, then Set its parent to the main anchorNode which
+     * will be the center of the mirror node.
+     *
+     * - We then Fix the rotation of imported obj file in the y and x direction.
+     * - Do a rotation for tiles that are odd in the mirror grid and fix the x transition to
+     *   overlap with half of previous tile
+     * - Finally set scale and rotation of tile initially
+     *
+     * @param modelRenderable current tile reference to renderable object.
+     */
     private void addTileToScene (ModelRenderable modelRenderable) {
 
         if (MirrorApp.getTileShape() == TileShape.ID_TRIANGLE  && positionX == 0) {
@@ -162,7 +240,7 @@ public class TileNodes extends AnchorNode {
         float scaleXYZ = TileNo.scaleMap.get(MirrorApp.getNoOFTiles());
         float scaleX = scaleXYZ;
         // Do a rotation for tiles that are odd in the mirror grid and fix the x transition to
-        // overlap with half of previoys tile
+        // overlap with half of previous tile
         float yRotation = 0;
         if (MirrorApp.getTileShape() == TileShape.ID_TRIANGLE ) {
             if ( positionX % 2 == 0 ) {
@@ -188,7 +266,12 @@ public class TileNodes extends AnchorNode {
     }
 
 
-
+    /**
+     * Similar to function addTileToScene but to handle special triangle shaped case fillers at right
+     * and left most of each row of tiles. 3D objects require different scaling and rotation angles.
+     *
+     * @param modelRenderable current tile reference to renderable object.
+     */
     private void addFillerTileToScene(ModelRenderable modelRenderable) {
 
         // Create a new node for the current tile
@@ -232,6 +315,18 @@ public class TileNodes extends AnchorNode {
         }
     }
 
+    /**
+     * rotate() is called on every frame update and it reads the byte array sent by server of processed
+     * image which contains normalized rotation angle values of all the tiles, and performs the
+     * local rotation based on the read value.
+     *
+     * Note: The function will poll() the que for any backlogged frames to processes until no
+     * further frames are available.
+     *
+     * Again special attention need to apply the even tiles in the x direction in case of Triangle
+     * pattern.
+     *
+     */
     public void rotate() {
 
         float rotationAngle;

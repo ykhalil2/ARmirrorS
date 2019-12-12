@@ -21,34 +21,58 @@ import com.example.ARmirrorS.Client.Constants.TileNo;
 import com.example.ARmirrorS.Client.Constants.TileShape;
 import com.example.ARmirrorS.MirrorApp;
 import com.example.ARmirrorS.R;
-import com.example.ARmirrorS.Server.Constants.CameraID;
-import com.example.ARmirrorS.Server.Constants.CameraParam;
 
 import java.net.URI;
 
+/**
+ * <h1>Class SlideAdapterClientSettings</h1>
+ * Class <b>SlideAdapterClientSettings</b> used to handle collection of data from user on all pages
+ * associated with the client Parameters including:-
+ * <p>
+ * 1. Tile Selection number of times in x and y direction
+ * 2. Tile shapes (square, circle or triangle)
+ * 3. Material of tiles (wood or metal)
+ * 4. Plane Detection Method for placing the mirror (Augmented/Vert./Horz.)
+ * <p>
+ * it is also responsible for trying to reconnect to server in case first attempt failed.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see PagerAdapter
+ * @see Activity
+ */
+
 public class SlideAdapterClientSettings extends PagerAdapter {
 
-    // Calling Activity Context
+    /**Parent Activity Running Context.*/
     private Context context;
-
+    /**Array storing Integer value of Drawable resource to display at top of each page.*/
     private static int[] sliderImages;
+    /**Array storing Integer value of string resources for heading text of each page.*/
     private static String[] sliderHeadings;
+    /**Array storing Integer value of string resources for bottom description of a page.*/
     private static String[] slidersDescription;
-
-    // Values to be passed as part of the extra content for the new tile parameters
-
+    /**Tile Number in x and y direction to be passed in Extras of intent to next Activity.*/
     private static int tileNo        = TileNo.ID_UNDEFINED;
+    /**Tile Material to be passed in Extras of intent to next Activity.*/
     private static int tileMaterial  = TileMaterial.ID_UNDEFINED;
+    /**Tile Shape to be passed in Extras of intent to next Activity.*/
     private static int tileShape     = TileShape.ID_UNDEFINED;
+    /**Plane detection method to be passed in Extras of intent to next Activity.*/
     private static int detectionMode = DetectionMode.ID_UNDEFINED;
-
+    /**Flag to see if user connected to server and initiate a new attempt to connect in case of failure.*/
     public boolean userConnectedToServer = false;
 
     /**
      *  Constructs a SlideAdapterServerSettings to be used when slides/items are instantiated
      *  according to user input.
      *
-     * @param setContext
+     * @param setContext parent activity context.
      */
     public SlideAdapterClientSettings(Context setContext) {
 
@@ -82,6 +106,11 @@ public class SlideAdapterClientSettings extends PagerAdapter {
         };
     }
 
+    /**
+     * Retrieves the number of pages in the slider.
+     *
+     * @return number of pages to display.
+     */
     @Override
     public int getCount() {
         String clientStatus = MirrorApp.getWebSocketClientStatus();
@@ -117,6 +146,15 @@ public class SlideAdapterClientSettings extends PagerAdapter {
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
+
+    /**
+     * Called to instantiate a page. And expands all appropriate chunks, setup buttons, radio Groups
+     * scroll Views, etc. In addition all onClick callbacks will be handled within.
+     *
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -154,13 +192,27 @@ public class SlideAdapterClientSettings extends PagerAdapter {
     }
 
 
-
+    /**
+     * Called to destroy a page from the slider. Currently not being used since we need to keep
+     * track of all user inputs and not have the user reselect parameters again.
+     *
+     * @param container parent view to remove appropriate chunk from.
+     * @param position slide position (0, 1, etc.)
+     * @param object View to be removed.
+     */
     @Override
     public void destroyItem(ViewGroup container, int position, @NonNull  Object object) {
         //container.removeView((ConstraintLayout) object);
     }
 
-
+    /**
+     * Method is used to setup position 1 of the slider pages, and handles initiation of additional
+     * attempts to connect to the server in case first blocking connect has failed.
+     *
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     private Object setupPositionOne(@NonNull ViewGroup container, int position) {
 
         // inflate our resource xml chunk and attach it to this view and context
@@ -350,7 +402,14 @@ public class SlideAdapterClientSettings extends PagerAdapter {
         return chunk;
     }
 
-
+    /**
+     * Method used to setup the horizontal scroll view to obtain tile numbers and create onClick
+     * listeners for all images to overlay when item is selected.
+     *
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     private Object setupPositionTwo(@NonNull ViewGroup container, int position) {
 
         // inflate our resource xml chunk and attach it to this view and context
@@ -461,7 +520,14 @@ public class SlideAdapterClientSettings extends PagerAdapter {
         return chunk;
     }
 
-
+    /**
+     * Method used to setup the horizontal scroll view to obtain tile Shape and create onClick
+     * listeners for all images to overlay when item is selected.
+     *
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     private Object setupPositionThree(@NonNull ViewGroup container, int position) {
 
         // inflate our resource xml chunk and attach it to this view and context
@@ -573,7 +639,14 @@ public class SlideAdapterClientSettings extends PagerAdapter {
         return chunk;
     }
 
-
+    /**
+     * Method used to setup the horizontal scroll view to obtain tile Material and create onClick
+     * listeners for all images to overlay when item is selected.
+     *
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     private Object setupPositionFour(@NonNull ViewGroup container, int position) {
 
         // inflate our resource xml chunk and attach it to this view and context
@@ -661,6 +734,14 @@ public class SlideAdapterClientSettings extends PagerAdapter {
         return chunk;
     }
 
+    /**
+     * Method used to setup the horizontal scroll view to obtain requested plane detection mode
+     * and create onClick listeners for all radio buttons and groups.
+     *
+     * @param container parent view to expand and inflate appropriate chunk to.
+     * @param position slide position (0, 1, etc.)
+     * @return Chunk view to expand and add to parent container.
+     */
     private Object setupPositionFive(@NonNull ViewGroup container, int position) {
 
         // inflate our resource xml chunk and attach it to this view and context
@@ -776,20 +857,38 @@ public class SlideAdapterClientSettings extends PagerAdapter {
     }
 
 
-
-
+    /**
+     * Get the Number of tiles in horizontal and vertical plane.
+     *
+     * @return tileNo | number of tiles per row and column.
+     */
     public int getTileNo() {
         return tileNo;
     }
 
+    /**
+     * Retrieve the Tile material selected by user.
+     *
+     * @return tileMaterial | Tile material | wood or metal.
+     */
     public int getTileMaterial() {
         return tileMaterial;
     }
 
+    /**
+     * Obtain the user chosen Tile Shape.
+     *
+     * @return tileShape | Tile Shape | Square, Circle, or Triangle.
+     */
     public int getTileShape() {
         return tileShape;
     }
 
+    /**
+     * Rerturns the user selected Plane detection Method.
+     *
+     * @return detectionMode | Plane detection Mode | Horizontal, Vertical, or Augmented Image.
+     */
     public int getDetectionMode() {
         return detectionMode;
     }

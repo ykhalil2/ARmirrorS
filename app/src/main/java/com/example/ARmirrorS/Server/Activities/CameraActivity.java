@@ -41,47 +41,63 @@ import org.opencv.video.Video;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * <h1>Class CameraActivity</h1>
+ * Class <b>CameraActivity</b> is the main server Activity. Handles interaction with OpenCV to
+ * initialize camera and set proper camera parameters to display image based on user preferences.
+ * <p>
+ * 1. Handles GUI setup for all processing Methods.
+ * 2. Sets-up Menu items for resolutions supported.
+ * 3. initiate a background thread to update status
+ * 4. setup spinners, and toolbar.
+ * 5. handle frames received from OpenCV by calling proper Algorithm.
+ * <p>
+ *
+ * @author Yussuf Khalil, Daniel King
+ * @author ykhalil2@illinois.edu, dking32@illinois.edu
+ *
+ * @version 1.1
+ * @since 2019-12-05
+ *
+ * @see org.opencv.android.CameraActivity
+ * @see CvCameraViewListener2
+ */
+
 public class CameraActivity extends org.opencv.android.CameraActivity implements CvCameraViewListener2 {
 
-    // Used for logging success or failure messages
+    /**Used for logging success or failure messages.*/
     private static final String TAG = CameraActivity.class.getSimpleName();
-
-    // Update the Server and Client Status every 3 mSeconds so we will not affect image processing
+    /**Update the Server and Client Status every 3 mSeconds so we will not affect image processing.*/
     private ServerClientStatusThread statusUpdateThread;
-
-    // Set initial Display mode to color RGBA until user selects otherwise or start a background
-    // extraction method
+    /**Flag to determine if camera has started successfully.*/
     private boolean cameraStarted  = false;
+    /**Set initial Display mode to color RGBA until user selects otherwise or start a background extraction method.*/
     private int cameraMode         = CameraParam.VIEW_MODE_RGBA;
+    /**Requested camera Resolution.*/
     private int requestedCameraResolution;   // 0 for 640x460  - 1 for heigher resolutions
+    /**Array to hold all Camera supported Resolutions.*/
     private int[][] cameraSupportedResolutions;
-
-    // Passed in intent for user mode (expert or easy).
+    /**Passed in intent for user mode (expert or easy).*/
     private int interactionLevel;
-
-    // Set the Camera by Default to Back Camera
+    /**Set the Camera by Default to Back Camera.*/
     public static String cameraID = CameraID.CAMERA_FRONT_ID;
-
-    // Loads camera view of OpenCV for us to use. This lets us see using OpenCV
+    /**Loads camera view of OpenCV for us to use.*/
     private CameraBridgeViewBase mOpenCvCameraView;
-
-    // Used to get RGB image and transpose it to fix camera orientation from 270 to 0 degrees
+    /**Used to get RGB image and transpose it to fix camera orientation from 270 to 0 degrees.*/
     private Frame frame;
-
-    // Spinner to select Best Background Subtraction Method
+    /**Spinner to select Best Background Subtraction Method.*/
     Spinner bgSubtractionSpinner;
-
-    // Background extraction method (undefined until users selects a method)
+    /**Background extraction method (undefined until users selects a method).*/
     private int bgExtractionMode = ImageProcessParam.BG_SUBTRACT_UNDEFINED;
-
-    // Setup GUI interface
+    /**Setup GUI interface.*/
     private ServerGUISetup ui = new ServerGUISetup(this);
-
-
-    // Intent Extra String Identifiers
+    /**Intent Extra String Identifier for Camera Index (front or back).*/
     private static final String CAM_INDEX      = "CAM_INDEX";
+    /**Intent Extra String Identifier for Camera Resolution (Maximum or 640x480).*/
     private static final String CAM_RESOLUTION = "CAM_RESOLUTION";
+    /**Intent Extra String Identifier for Camera Mode (color, Gray, or masked frames).*/
     private static final String CAM_MODE       = "CAM_MODE";
+    /**Intent Extra String Identifier for User Mode (Expert or easy).*/
     private static final String USER_MODE      = "SERVER_USER_MODE";
 
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +107,7 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Load OpenCV package
+     * Loads OpenCV package.
      */
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -109,9 +125,6 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     };
 
 
-
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////  Setup Initial View /////////////////////////////////////////////
@@ -119,7 +132,18 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Called when the activity is first created.
+     * Called by the Android system when the activity is created.
+     * It performs the following tasks in order:
+     * <p>
+     * 1. Get intent extras passed by calling activity
+     * 2. Setup toolbar instead of normal action bar because we want to remove it from activity
+     * 3. Setup Camera for Image Processing
+     * 4. Setup Thread for updating Web Socket Server Status
+     * 5. Setup spinner for method of background subtraction.
+     * <p>
+     *
+     * @param savedInstanceState saved state from the previously terminated instance of this
+     *                           activity (unused).
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -146,8 +170,6 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
 
         // Setup spinner for method of background subtraction
         setupSpinner();
-
-
     }
 
     /**
@@ -167,7 +189,9 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
-     * Setup a tool bar instead of an action bar to hide it when needed
+     * Setup a tool bar instead of an action bar to hide it when needed if the user selects no
+     * interaction with the server and to increase the screen room to be able to view all seekbars
+     * and radio buttons on one portrait view.
      */
     private void setupToolbar() {
         // Get The toolbar view and set it to replace the standard action bar
@@ -238,12 +262,18 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
-     * Setup Spinner for Subtraction Method.
+     * Setup Spinner for Subtraction Methods to be used.
      */
     private void setupSpinner() {
         bgSubtractionSpinner = findViewById(R.id.bgSubtractionSpinner);
         bgSubtractionSpinner.setSelection(0);
 
+        /**
+         * OnItemSelected will set the processing method chosen for each frame. It is also
+         * responsible for calling the UI run function to expand and inflate the appropriate chunk
+         * and add it to the parent view.
+         *
+         */
         bgSubtractionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(final AdapterView<?> parent, final View view,
@@ -259,7 +289,9 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
-     * Setup the Menu Items
+     * Setup the Menu Items. Called Once at start of the activity and is responsible fo populating
+     * All the supported Resolution in the menu item group.
+     *
      * @param menu - menue for choosing camera resolution and type of display
      * @return returns always true
      */
@@ -292,7 +324,13 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
-     * Setup action when Menu item is selected
+     * Setup action when Menu item is selected. In case Menu Item related to Camera Mode is selected
+     * handle the display of the frames in either color or gray and mask the image if desired.
+     *
+     * In case Resolution Change is desired. Disable the camera View and reset the resolution needed
+     * then enable the camera view again.
+     * <p></p>
+     *
      * @param item menu item selected
      * @return true
      */
@@ -343,9 +381,6 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
 
-
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////  Process Camera Frames //////////////////////////////////////////
@@ -353,14 +388,14 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     *
+     * Currently not being used.
      */
     public CameraActivity() {
         Log.i(TAG, "Instantiated new " + this.getClass());
     }
 
     /**
-     *
+     * Called when a Pause event is detected. Method disables the camera View temporally.
      */
     @Override
     public void onPause() {
@@ -370,7 +405,7 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
-     *
+     * Called when camera is resumed and it asynchronously reinitialize OpenCV.
      */
     @Override
     public void onResume() {
@@ -385,7 +420,7 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
-     *
+     * Disables the view on Destroy event.
      */
     public void onDestroy() {
         super.onDestroy();
@@ -394,6 +429,10 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
+     * Called initally when camera starts or when a user selects to change the resolution. Sets the
+     * Spinner to no Processing method Selected. Update the processing method to undefined, and in
+     * case of Easy mode interaction level with the server set the processing method to MOG2
+     * subtraction and update the frame with proper width and height to display and process.
      *
      * @param width -  the width of the frames that will be delivered
      * @param height - the height of the frames that will be delivered
@@ -430,7 +469,7 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
-     *
+     * Release the Frame by deallocating its associated memory.
      */
     public void onCameraViewStopped() {
         frame.release();
@@ -446,6 +485,9 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
     }
 
     /**
+     * Called on every frame update. Responsible for fixing orientation of the camera and processing
+     * the frame in case a subtraction method is selected by the user, otherwise it returns the
+     * current frame in either gray or color format based on used selection.
      *
      * @param inputFrame CvCameraViewFrame frame to process
      * @return final processed image to display in activity view
@@ -470,7 +512,5 @@ public class CameraActivity extends org.opencv.android.CameraActivity implements
         returnFrame = frame.process();
 
         return returnFrame;
-
-
     }
 }
